@@ -1,0 +1,61 @@
+<div class="container-fluid text-center text-white row pb-4 pt-4">
+    <div class="col-4"></div>
+    <div class="col-4 border border-dark rounded-3 form_container">
+        <!-- <nav class="navbar navbar-dark row">
+                <div class="col-6">
+                    <a class="nav-link active" routerLink="/sign-in" routerLinkActive="active">Sign In</a>
+                </div>
+                <div class="col-6">
+                    <a class="nav-link active" routerLink="/sign-up" routerLinkActive="active">Sign Up</a>
+                </div>         
+        </nav> -->
+        <h2 class="mb-2 mt-2">Sign In</h2>
+        <form #signinForm="ngForm" (ngSubmit)="submitForm()">
+            
+            <div class="mb-3 row">
+                <div class="col-md-4">
+                    <label for="userName" class="col-form-label">Username</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" #userName="ngModel" pattern="^[a-zA-Z ]*$"
+                    [class.is-invalid]="signinForm.submitted && userName.invalid"
+                    required id="userName" class="form-control" name="userName" [(ngModel)]="registeredUser.userName">
+                                   
+                    <div *ngIf="userName.errors && (signinForm.submitted && userName.invalid)">
+                        <small class="text-danger" *ngIf="userName.errors['required']">Username is required</small>
+                        <small class="text-danger" *ngIf="userName.errors['pattern']">Username can only contain alphabets</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <div class="col-md-4">
+                    <label for="password" class="col-form-label">Password</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="password" #password="ngModel" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"
+                    [class.is-invalid]="signinForm.submitted && password.invalid"
+                    required id="password" name="password" class="form-control" [(ngModel)]="registeredUser.password">
+
+                    <div *ngIf="password.errors && (signinForm.submitted && password.invalid)">
+                        <small class="text-danger" *ngIf="password.errors['required']">Password is required</small>
+                        <small class="text-danger" *ngIf="password.errors['pattern']">Please Enter a valid Password</small>
+                      </div>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <div class="col-md-12 mb-2">
+                    <button class="btn btn-dark" type="submit">Sign In</button>
+                </div>
+                <div class="col-md-12">
+                    Not Registered?
+                    <a routerLink="/sign-up" routerLinkActive="active">Sign Up</a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="col-4"></div>
+</div>
+

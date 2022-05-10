@@ -1,0 +1,169 @@
+<div class="container-fluid text-center text-white row pb-3">
+    <h2 class="m-2">Registration Form</h2>
+
+    <div class="col-3"></div>
+
+    <div class="col-6 border border-dark rounded-3 form_container">
+        <form class="m-4" id="form" 
+            [formGroup]="userRegistrationForm"
+            (ngSubmit)="submitForm(form)"
+            #form="ngForm">
+
+            <!-- {{userRegistrationForm.value | json}} -->
+
+            <div class="form-group mb-3 row">
+                <div class="col-md-4">
+                    <label for="name" class="col-form-label">Name</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" id="name" 
+                    [class.is-invalid]="form.submitted && userRegistrationForm.get('name')?.invalid"
+                     class="form-control" placeholder="Enter Full Name" formControlName="name">
+                </div>
+                <div *ngIf="form.submitted && userRegistrationForm.get('name')?.invalid">
+                    <small *ngIf="userRegistrationForm.get('name')?.hasError('required')" class="text-danger">Name is required</small>
+                    <small *ngIf="userRegistrationForm.get('name')?.hasError('minlength')" class="text-danger">Name must be atleast 3 characters</small>
+                    <small *ngIf="userRegistrationForm.get('name')?.hasError('pattern')" class="text-danger">Name can't contain digits and special charatcters</small>
+                </div>
+            </div>
+
+            <div class="form-group mb-3 row">
+                <div class="col-md-4">
+                    <label for="college" class="col-form-label">College</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" id="college" 
+                    [class.is-invalid]="form.submitted && userRegistrationForm.get('college')?.invalid"
+                     class="form-control" placeholder="Enter your college" formControlName="college">
+                </div>
+                <div *ngIf="form.submitted && userRegistrationForm.get('college')?.invalid">
+                    <small *ngIf="userRegistrationForm.get('college')?.hasError('required')" class="text-danger">College is required</small>
+                    <small *ngIf="userRegistrationForm.get('college')?.hasError('minlength')" class="text-danger">College name must be atleast 5 characters</small>
+                    <small *ngIf="userRegistrationForm.get('name')?.hasError('pattern')" class="text-danger">College name can't contain digits and special charatcters</small>
+                </div>
+            </div>
+
+            <div class="form-group mb-3 row">
+                <div class="col-md-4">
+                    <label for="cgpa" class="col-form-label">CGPA</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" id="cgpa" 
+                    [class.is-invalid]="form.submitted && userRegistrationForm.get('cgpa')?.invalid"
+                    class="form-control" placeholder="Enter your current CGPA" formControlName="cgpa">
+                </div>
+                <div *ngIf="form.submitted && userRegistrationForm.get('cgpa')?.invalid">
+                    <small *ngIf="userRegistrationForm.get('cgpa')?.hasError('required')" class="text-danger">CGPA is required</small>
+                    <small *ngIf="userRegistrationForm.get('cgpa')?.hasError('pattern')" class="text-danger">Please enter a valid CGPA</small>
+                </div>
+            </div>
+
+            <div class="form-group mb-3 row">
+                <div class="col-md-4">
+                    <label for="passingYear" class="col-form-label">Year of Passing</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" id="passingYear" 
+                    [class.is-invalid]="form.submitted && userRegistrationForm.get('passingYear')?.invalid"
+                    class="form-control" placeholder="E.g. 2020" formControlName="passingYear">
+                </div>
+                <div *ngIf="form.submitted && userRegistrationForm.get('passingYear')?.invalid">
+                    <small *ngIf="userRegistrationForm.get('passingYear')?.hasError('required')" class="text-danger">Year of Passing is required</small>
+                    <small *ngIf="userRegistrationForm.get('passingYear')?.hasError('pattern')" class="text-danger">Please enter a valid year (must be in YYYY format)</small>
+                </div>
+            </div>
+
+            <div class="form-group mb-3 row">
+                <div class="col-md-4">
+                    <label for="dateOfJoining" class="col-form-label">Date Of Joining Office</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="date" id="dateOfJoining" 
+                    [class.is-invalid]="form.submitted && userRegistrationForm.get('dateOfJoining')?.invalid"
+                    class="form-control" formControlName="dateOfJoining">
+                </div>
+                <div *ngIf="form.submitted && userRegistrationForm.get('dateOfJoining')?.invalid">
+                    <small *ngIf="userRegistrationForm.get('dateOfJoining')?.hasError('required')" class="text-danger">Date of joining is required</small>
+                </div>
+            </div>
+
+            <div class="form-group mb-3 row">
+                <div class="col-md-4">
+                    <label for="skills" class="col-form-label">Skills</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" id="skills" 
+                    [class.is-invalid]="form.submitted && userRegistrationForm.get('skills')?.invalid"
+                    placeholder="E.g. Angular, Node, SQL" class="form-control" formControlName="skills">
+                </div>
+                <div *ngIf="form.submitted && userRegistrationForm.get('skills')?.invalid">
+                    <small *ngIf="userRegistrationForm.get('skills')?.hasError('required')" class="text-danger">Skills is required</small>
+                    <small *ngIf="userRegistrationForm.get('skills')?.hasError('minlength')" class="text-danger">Skills must be atleast 3 characters</small>
+                </div>
+            </div>
+
+            <div class="form-group mb-3 row">
+                <div class="col-md-4">
+                    <label for="resume" class="col-form-label">Upload Resume</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="file" id="resume" 
+                    [class.is-invalid]="form.submitted && userRegistrationForm.get('resume')?.invalid"
+                    class="form-control" formControlName="resume"  accept=".pdf">
+                </div>
+                <div *ngIf="form.submitted && userRegistrationForm.get('resume')?.invalid">
+                    <small *ngIf="userRegistrationForm.get('resume')?.hasError('required')" class="text-danger">Resume is required</small>
+                    <!-- <small *ngIf="!validFile" class="text-danger">Only PDF format is supported</small> -->
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <div class="col-md-12">
+                    <button  type="submit" *ngIf="displayButton" class="btn btn-dark">Submit</button>
+                </div>
+
+                <div class="col-md-6">
+                    <button  type="button" *ngIf="!displayButton" class="btn btn-dark" (click)="resetForm()">Reset</button>
+                </div>
+               
+                <div class="col-md-6">
+                    <button  type="button" *ngIf="!displayButton" class="btn btn-dark" (click)="addDataToTable()">Add Data</button>
+                </div>
+            </div>
+        </form>
+    
+    </div>
+    <div class="col-3"></div>
+
+    <div class="row text-center text-white">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 mt-4 mb-4">
+            <table class="table table-info">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>College</th>
+                        <th>CGPA</th>
+                        <th>Year of Passing</th>
+                        <th>Date of Joining Office</th>
+                        <th>Skills</th>
+                        <th>Resume</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of list">
+                        <td>{{item.name}}</td>
+                        <td>{{item.college}}</td>
+                        <td>{{item.cgpa}}</td>
+                        <td>{{item.passingYear}}</td>
+                        <td>{{item.dateOfJoining}}</td>
+                        <td>{{item.skills}}</td>
+                        <td>{{item.resume}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+   
+</div>
